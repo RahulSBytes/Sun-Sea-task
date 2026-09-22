@@ -51,7 +51,7 @@ function handlePost(req, res) {
     return res.status(400).json({ error: "endDate is not a valid date." });
   }
 
-  // Validate date range (endDate before startDate is invalid; same-day is fine)
+  // Validate date range
   if (end < start) {
     return res.status(400).json({ error: "endDate cannot be before startDate." });
   }
@@ -73,7 +73,6 @@ function handlePost(req, res) {
 function handleGet(req, res) {
   let status = req.query?.status;
 
-  // Query params can sometimes arrive as an array (e.g. ?status=a&status=b)
   if (Array.isArray(status)) {
     status = status[0];
   }
